@@ -7,6 +7,8 @@ require (
 	github.com/vektah/gqlparser/v2 v2.5.10
 )
 
+replace github.com/99designs/gqlgen => github.com/gitxiongpan/gqlgen v0.0.0-20230928120320-c270df505d0f
+
 require (
 	github.com/agnivade/levenshtein v1.1.1 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect

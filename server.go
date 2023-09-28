@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gitxiongpan/gqlgen-todos/graph/public"
 	"log"
 	"net/http"
 	"os"
@@ -24,7 +25,7 @@ func main() {
 	http.Handle("/query", srv)
 
 	publicSrv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{
-		Schema:    graph.GetPublicSchema(),
+		Schema:    public.GetPublicSchema(),
 		Resolvers: &graph.Resolver{},
 	}))
 	http.Handle("/public", playground.Handler("GraphQL playground", "/public/query"))

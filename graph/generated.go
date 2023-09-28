@@ -24,7 +24,7 @@ import (
 // NewExecutableSchema creates an ExecutableSchema from the ResolverRoot interface.
 func NewExecutableSchema(cfg Config) graphql.ExecutableSchema {
 	return &executableSchema{
-		schema:    cfg.Schema,
+		schema:     cfg.Schema,
 		resolvers:  cfg.Resolvers,
 		directives: cfg.Directives,
 		complexity: cfg.Complexity,
@@ -32,7 +32,7 @@ func NewExecutableSchema(cfg Config) graphql.ExecutableSchema {
 }
 
 type Config struct {
-	Schema    *ast.Schema
+	Schema     *ast.Schema
 	Resolvers  ResolverRoot
 	Directives DirectiveRoot
 	Complexity ComplexityRoot
@@ -82,7 +82,7 @@ type TodoResolver interface {
 }
 
 type executableSchema struct {
-	schema    *ast.Schema
+	schema     *ast.Schema
 	resolvers  ResolverRoot
 	directives DirectiveRoot
 	complexity ComplexityRoot
@@ -260,7 +260,6 @@ func (ec *executionContext) processDeferredGroup(dg graphql.DeferredGroup) {
 }
 
 func (ec *executionContext) introspectSchema() (*introspection.Schema, error) {
-	fmt.Printf("executionContext.introspectSchema() called\n")
 	if ec.DisableIntrospection {
 		return nil, errors.New("introspection disabled")
 	}

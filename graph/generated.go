@@ -31,6 +31,7 @@ func NewExecutableSchema(cfg Config) graphql.ExecutableSchema {
 }
 
 type Config struct {
+	schema    *ast.Schema
 	Resolvers  ResolverRoot
 	Directives DirectiveRoot
 	Complexity ComplexityRoot
@@ -80,13 +81,16 @@ type TodoResolver interface {
 }
 
 type executableSchema struct {
+	schema    *ast.Schema
 	resolvers  ResolverRoot
 	directives DirectiveRoot
 	complexity ComplexityRoot
 }
 
 func (e *executableSchema) Schema() *ast.Schema {
-	fmt.Printf("executableSchema.Schema() called\n")
+	if e.schema != nil {
+		return e.schema
+	}
 	return parsedSchema
 }
 

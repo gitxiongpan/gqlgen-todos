@@ -23,7 +23,10 @@ func main() {
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
 
-	publicSrv := handler.NewDefaultServer(graph.NewExecutablePublicSchema(graph.Config{Resolvers: &graph.Resolver{}}))
+	publicSrv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{
+		Schema:    graph.GetPublicSchema(),
+		Resolvers: &graph.Resolver{},
+	}))
 	http.Handle("/public", playground.Handler("GraphQL playground", "/public/query"))
 	http.Handle("/public/query", publicSrv)
 

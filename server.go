@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gitxiongpan/gqlgen-todos/graph/public"
+	"github.com/vektah/gqlparser/v2/ast"
 	"log"
 	"net/http"
 	"os"
@@ -24,8 +24,18 @@ func main() {
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
 
+	execSchema := graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}})
+	schema := execSchema.Schema()
+	newFields := ast.FieldList{}
+	for _, field := range schema.Query.Fields {
+		if field.Name != "todos" {
+			newFields = append(newFields, field)
+		}
+	}
+	schema.Query.Fields = newFields
+
 	publicSrv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{
-		Schema:    public.GetPublicSchema(),
+		Schema:    schema,
 		Resolvers: &graph.Resolver{},
 	}))
 	http.Handle("/public", playground.Handler("GraphQL playground", "/public/query"))

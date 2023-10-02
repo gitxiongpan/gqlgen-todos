@@ -3,6 +3,7 @@ package public
 import (
 	"embed"
 	"fmt"
+	"github.com/kr/pretty"
 	"github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -22,5 +23,7 @@ func GetPublicSchema() *ast.Schema {
 	var publicSources = []*ast.Source{
 		{Name: "public.graphqls", Input: publicSourceData("public.graphqls"), BuiltIn: false},
 	}
-	return gqlparser.MustLoadSchema(publicSources...)
+	schema := gqlparser.MustLoadSchema(publicSources...)
+	pretty.Print(schema)
+	return schema
 }

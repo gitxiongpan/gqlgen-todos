@@ -21,6 +21,7 @@ func main() {
 	if port == "" {
 		port = defaultPort
 	}
+	log.Print(asd)
 
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
 

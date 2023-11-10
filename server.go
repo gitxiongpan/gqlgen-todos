@@ -13,6 +13,8 @@ import (
 
 const defaultPort = "8080"
 
+var gg = 1
+
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {

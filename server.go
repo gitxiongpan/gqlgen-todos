@@ -13,15 +13,11 @@ import (
 
 const defaultPort = "8080"
 
-var gg = 1
-var dd = 1
-
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = defaultPort
 	}
-	log.Print(asd)
 
 	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
 

@@ -13,3 +13,5 @@ import (
 type Resolver struct {
 	todos []*model.Todo
 }
+
+var newsomething = "asd"
